@@ -1,10 +1,15 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
   @Get()
   getAll() {
     return 'This returns all coffees';
+  }
+
+  @Get('/res')
+  getByRes(@Res() res) {
+    res.status(200).json({ name: 'Hola' });
   }
 
   @Get(':id') // Dynamic Route Registered
