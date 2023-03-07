@@ -1,4 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
+import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
 import { Coffee } from '../../models/coffee.model';
 
 @Injectable()
@@ -28,13 +30,13 @@ export class CoffeeService {
     return coffee;
   }
 
-  addCoffee(body: any) {
+  addCoffee(body: CreateCoffeeDto) {
     const { name } = body;
     this.coffees.push({ id: ++CoffeeService.id, name });
     return 'Coffee Added';
   }
 
-  updateCofee(id: number, body: any) {
+  updateCofee(id: number, body: UpdateCoffeeDto) {
     return `This Updated Coffee with id ${id}`;
   }
 
