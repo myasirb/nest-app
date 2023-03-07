@@ -9,7 +9,7 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
-import { CoffeeService } from '../../services/coffee/coffee.service';
+import { CoffeeService } from '../../services/coffees/coffee.service';
 
 @Controller('coffees')
 export class CoffeesController {
