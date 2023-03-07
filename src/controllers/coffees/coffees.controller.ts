@@ -9,24 +9,27 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { CoffeeService } from '../../services/coffee/coffee.service';
 
 @Controller('coffees')
 export class CoffeesController {
-  @Get()
-  getByLimit(@Query() paginationParam) {
-    const { limit, offset } = paginationParam;
-    return `This Has Limit : ${limit} and offset : ${offset}`;
-  }
+  constructor(private readonly coffeeService: CoffeeService) {}
+
+  // @Get()
+  // getByLimit(@Query() paginationParam) {
+  //   const { limit, offset } = paginationParam;
+  //   return this.coffeeService.readByLimit(limit, offset);
+  // }
 
   @Get()
   getAll() {
-    return 'This returns all coffees';
+    return this.coffeeService.readAll();
   }
 
   @Get(':id') // Dynamic Route Registered
-  getById(@Param('id') id: String) {
+  getById(@Param('id') id: number) {
     // Controller Function with params as parameter and exacting id from it to id variable with its type
-    return `This Returns coffee with id : ${id}`;
+    return this.coffeeService.readById(id);
   }
 
   @Get('/res')
@@ -36,21 +39,16 @@ export class CoffeesController {
 
   @Post()
   postCoffee(@Body() body) {
-    const { name } = body;
-    return name;
+    return this.coffeeService.addCoffee(body);
   }
 
   @Patch(':id')
-  updateCofee(@Param('id') id: String, @Body() body) {
-    body['type'] = 'Update';
-    body['id'] = id;
-    return body;
+  updateCofee(@Param('id') id: number, @Body() body) {
+    return this.coffeeService.updateCofee(id, body);
   }
 
   @Delete(':id')
-  deleteCofee(@Param('id') id: String, @Body() body) {
-    body['type'] = 'Delete';
-    body['id'] = id;
-    return body;
+  deleteCofee(@Param('id') id: number) {
+    return this.coffeeService.deleteCofee(id);
   }
 }
