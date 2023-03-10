@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config/dist';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
@@ -10,7 +11,18 @@ export class CoffeeService {
   constructor(
     @InjectRepository(Coffee)
     private readonly coffeeRepository: Repository<Coffee>,
-  ) {}
+    private readonly configService: ConfigService,
+  ) {
+
+    // One Way To Get config vars 
+    // Other is using process.env.varName 
+    const DB_USER = configService.get<String>(
+      'DB_USER',
+      'Default here if not present in env file ',
+    );
+
+    console.log(DB_USER);
+  }
 
   readByLimit(limit: any, offset: any) {
     return `This Has Limit : ${limit} and offset : ${offset}`;
