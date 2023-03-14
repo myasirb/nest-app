@@ -1,10 +1,23 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyGuard } from 'src/common/guards/api-key/api-key.guard';
+import { LoggingMiddleware } from 'src/common/middleware/logging/logging.middleware';
 
 @Module({
   imports: [ConfigModule],
   providers: [{ provide: APP_GUARD, useClass: ApiKeyGuard }],
 })
-export class CommonModule {}
+export class CommonModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggingMiddleware).forRoutes('*'); // Apply middleware on all routes
+    // consumer
+    //   .apply(LoggingMiddleware)
+    //   .forRoutes({ path: 'coffees', method: RequestMethod.GET }); // apply on /coffee get routes
+  }
+}
