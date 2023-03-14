@@ -9,6 +9,7 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { IsPublic } from 'src/common/decorators/public.decorator';
 import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
 import { CoffeeService } from '../../services/coffees/coffee.service';
@@ -24,6 +25,7 @@ export class CoffeesController {
   // }
 
   @Get()
+  @IsPublic(true)
   getAll() {
     return this.coffeeService.readAll();
   }
