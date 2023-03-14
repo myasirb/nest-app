@@ -9,6 +9,7 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
 import { IsPublic } from 'src/common/decorators/public.decorator';
 import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
 import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
@@ -27,7 +28,8 @@ export class CoffeesController {
 
   @Get()
   @IsPublic(true)
-  getAll() {
+  getAll(@Protocol('Here is the data') protocol: string) {
+    console.log(protocol);
     return this.coffeeService.readAll();
   }
 
