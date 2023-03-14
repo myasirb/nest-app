@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { IsPublic } from 'src/common/decorators/public.decorator';
+import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
 import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
 import { CoffeeService } from '../../services/coffees/coffee.service';
@@ -31,7 +32,8 @@ export class CoffeesController {
   }
 
   @Get(':id') // Dynamic Route Registered
-  getById(@Param('id') id: number) {
+  // IF Only TO APPLY ON Single param
+  getById(@Param('id', ParseIntPipe) id: number) {
     // Controller Function with params as parameter and exacting id from it to id variable with its type
     return this.coffeeService.readById(id);
   }

@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception/http-exception.filter';
 import { TimeoutInterceptor } from './common/interceptors/timeout/timeout.interceptor';
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response/wrap-response.interceptor';
+import { ParseIntPipe } from './common/pipes/parse-int/parse-int.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +23,7 @@ async function bootstrap() {
     new WrapResponseInterceptor(),
     new TimeoutInterceptor(),
   );
+  // app.useGlobalPipes(new ParseIntPipe());
   await app.listen(5000);
 }
 bootstrap();
