@@ -13,9 +13,8 @@ export class CoffeeService {
     private readonly coffeeRepository: Repository<Coffee>,
     private readonly configService: ConfigService,
   ) {
-
-    // One Way To Get config vars 
-    // Other is using process.env.varName 
+    // One Way To Get config vars
+    // Other is using process.env.varName
     const DB_USER = configService.get<String>(
       'DB_USER',
       'Default here if not present in env file ',
