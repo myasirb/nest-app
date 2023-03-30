@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import { ApiKeyGuard } from 'src/common/guards/api-key/api-key.guard';
-import { LoggingMiddleware } from 'src/common/middleware/logging/logging.middleware';
+import { ApiKeyGuard } from '../../common/guards/api-key/api-key.guard';
+import { LoggingMiddleware } from '../../common/middleware/logging/logging.middleware';
 
 @Module({
   imports: [ConfigModule],

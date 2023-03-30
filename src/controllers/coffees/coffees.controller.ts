@@ -11,11 +11,11 @@ import {
 } from '@nestjs/common';
 import { ApiForbiddenResponse } from '@nestjs/swagger';
 import { ApiTags } from '@nestjs/swagger/dist';
-import { Protocol } from 'src/common/decorators/protocol.decorator';
-import { IsPublic } from 'src/common/decorators/public.decorator';
-import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
-import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
-import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
+import { Protocol } from '../../common/decorators/protocol.decorator';
+import { IsPublic } from '../../common/decorators/public.decorator';
+import { ParseIntPipe } from '../../common/pipes/parse-int/parse-int.pipe';
+import { CreateCoffeeDto } from '../../dto/create-coffee.dto/create-coffee.dto';
+import { UpdateCoffeeDto } from '../../dto/update-coffee.dto/update-coffee.dto';
 import { CoffeeService } from '../../services/coffees/coffee.service';
 
 @ApiTags('coffees')

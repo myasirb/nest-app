@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateCoffeeDto } from 'src/dto/create-coffee.dto/create-coffee.dto';
-import { UpdateCoffeeDto } from 'src/dto/update-coffee.dto/update-coffee.dto';
+import { CreateCoffeeDto } from '../../dto/create-coffee.dto/create-coffee.dto';
+import { UpdateCoffeeDto } from '../../dto/update-coffee.dto/update-coffee.dto';
 import { Repository } from 'typeorm';
 import { Coffee } from '../../models/coffee.model';
 
